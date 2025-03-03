@@ -27,7 +27,7 @@
     <button id="chatButton">Chat with Us</button>
 
     <div id="chatContainer">
-        <!-- Salesforce Chat Bot iframe (you can replace this with your Salesforce widget or code) -->
+        <!-- Salesforce Chat Bot -->
         <iframe src="YOUR_SALESFORCE_CHATBOT_URL" width="100%" height="100%" frameborder="0"></iframe>
     </div>
 
@@ -37,6 +37,55 @@
             var chatContainer = document.getElementById("chatContainer");
             chatContainer.style.display = chatContainer.style.display === "none" ? "block" : "none";
         };
+    </script>
+
+    <!-- Salesforce Chat Bot Script -->
+    <style type='text/css'>
+        .embeddedServiceHelpButton .helpButton .uiButton {
+            background-color: #005290;
+            font-family: "Arial", sans-serif;
+        }
+        .embeddedServiceHelpButton .helpButton .uiButton:focus {
+            outline: 1px solid #005290;
+        }
+    </style>
+
+    <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+    <script type='text/javascript'>
+        var initESW = function(gslbBaseURL) {
+            embedded_svc.settings.displayHelpButton = true;
+            embedded_svc.settings.language = '';
+
+            embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+            embedded_svc.settings.entryFeature = 'LiveAgent';
+
+            embedded_svc.init(
+                'https://wise-impala-8blcub-dev-ed.trailblaze.my.salesforce.com',
+                'https://wise-impala-8blcub-dev-ed.trailblaze.my.salesforce-sites.com/liveAgentSetupFlow',
+                gslbBaseURL,
+                '00DdL000002izMn',
+                'mygroup',
+                {
+                    baseLiveAgentContentURL: 'https://c.la11-core1.sfdc-y37hzm.salesforceliveagent.com/content',
+                    deploymentId: '572dL000006EHiT',
+                    buttonId: '573dL0000034iK5',
+                    baseLiveAgentURL: 'https://d.la11-core1.sfdc-y37hzm.salesforceliveagent.com/chat',
+                    eswLiveAgentDevName: 'mygroup',
+                    isOfflineSupportEnabled: false
+                }
+            );
+        };
+
+        if (!window.embedded_svc) {
+            var s = document.createElement('script');
+            s.setAttribute('src', 'https://wise-impala-8blcub-dev-ed.trailblaze.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+            s.onload = function() {
+                initESW(null);
+            };
+            document.body.appendChild(s);
+        } else {
+            initESW('https://service.force.com');
+        }
     </script>
 
 </body>
