@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesforce Agent Bot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }   
+        #chatContainer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #f0f0f0;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <button id="chatButton">Chat with Us</button>
+
+    <div id="chatContainer">
+        <!-- Salesforce Chat Bot iframe (you can replace this with your Salesforce widget or code) -->
+        <iframe src="YOUR_SALESFORCE_CHATBOT_URL" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        // Show the chat container when the button is clicked
+        document.getElementById("chatButton").onclick = function() {
+            var chatContainer = document.getElementById("chatContainer");
+            chatContainer.style.display = chatContainer.style.display === "none" ? "block" : "none";
+        };
+    </script>
+
+</body>
+</html>
